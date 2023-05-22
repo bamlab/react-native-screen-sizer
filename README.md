@@ -1,6 +1,6 @@
 # react-native-screen-sizer
 
-A react native library to simulate different screen sizes on the same device
+Easily check how your app will display on different screen sizes
 
 ## Installation
 
