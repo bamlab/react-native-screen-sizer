@@ -1,5 +1,6 @@
 
 {
   "extends": "./tsconfig",
+  "noEmit": false,
   "exclude": ["example"]
 }
