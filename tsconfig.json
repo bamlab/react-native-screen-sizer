@@ -4,6 +4,7 @@
     "paths": {
       "react-native-screen-sizer": ["./src/index"]
     },
+    "noEmit": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "esModuleInterop": true,
