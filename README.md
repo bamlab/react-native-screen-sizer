@@ -1,5 +1,9 @@
 # ReactNative Screen Sizer
 
+<p align="center">
+<img src="./assets/screen-sizer-logo.png" alt="Screen Sizer logo" style="width: 100%;max-width:400px;" />
+</p>
+
 Quickly check how your app looks on different screen sizes.
 
 **TODO: GIF/VIDEO**
@@ -21,10 +25,10 @@ yarn add react-native-screen-sizer
 Then, add it to `App.tsx`:
 
 ```tsx
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // 👋 Add the import
-import * as ScreenSizer from 'react-native-screen-sizer';
+import * as ScreenSizer from "react-native-screen-sizer";
 
 // 👋 Call this at the top-level of App.tsx. It will handle some things like patching keyboard events.
 ScreenSizer.setup();
