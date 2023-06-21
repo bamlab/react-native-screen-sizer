@@ -13,22 +13,23 @@ Quickly check how your app looks on different screen sizes.
 Currently, screen-sizer will only work with expo projects.
 
 ```sh
-npm install react-native-screen-sizer
+yarn add react-native-screen-sizer
 ```
 
-or
+You'll need to have these dependencies installed:
 
-```sh
-yarn add react-native-screen-sizer
+```
+npx expo install expo-dev-client
+npx expo install react-native-safe-area-context
 ```
 
 Then, add it to `App.tsx`:
 
 ```tsx
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // 👋 Add the import
-import * as ScreenSizer from "react-native-screen-sizer";
+import * as ScreenSizer from 'react-native-screen-sizer';
 
 // 👋 Call this at the top-level of App.tsx. It will handle some things like patching keyboard events.
 ScreenSizer.setup();
@@ -47,7 +48,7 @@ export const App = () => {
 };
 ```
 
-NOTE: The `Wrapper` and the setup function are no-ops in release builds, so you can safely add them without adding `__DEV__` conditions yourself.
+**NOTE**: The `Wrapper` and the setup function are no-ops in release builds, so you can safely add them without adding `__DEV__` conditions yourself.
 
 ## Usage
 
