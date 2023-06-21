@@ -1,12 +1,12 @@
-# ReactNative Screen Sizer
-
 <p align="center">
 <img src="./assets/screen-sizer-logo.png" alt="Screen Sizer logo" style="width: 100%;max-width:400px;" />
 </p>
 
+# ReactNative Screen Sizer
+
 Quickly check how your app looks on different screen sizes.
 
-**TODO: GIF/VIDEO**
+<img src="./assets/demo.gif" alt="Live demo of the usage of the library" width="300" />
 
 ## Installation
 
