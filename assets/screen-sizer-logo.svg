@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1104.3014"
+   height="643.85675"
+   viewBox="0 0 1104.3015 643.85676"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   sodipodi:docname="screen-sizer-logo.svg"
+   inkscape:export-filename="screen-sizer-logo.png"
+   inkscape:export-xdpi="93.887413"
+   inkscape:export-ydpi="93.887413"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.59518272"
+     inkscape:cx="572.9333"
+     inkscape:cy="298.22775"
+     inkscape:window-width="1440"
+     inkscape:window-height="847"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-128.75314,-56.937102)">
+    <rect
+       style="fill:#ddddf2;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-linecap:square;stroke-dasharray:5.08078, 5.08078;paint-order:stroke fill markers"
+       id="rect234"
+       width="984.97864"
+       height="525.45123"
+       x="-1173.0553"
+       y="116.33606"
+       ry="65.923767"
+       transform="scale(-1,1)" />
+    <path
+       id="rect4274-5"
+       style="fill:#4545b4;fill-opacity:1;stroke:none;stroke-width:23.5257;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 248.07617,431.78711 v 150 h 150 l -38,-38 h -74 v -74 z" />
+    <path
+       id="rect4274-5-5"
+       style="fill:#4545b4;fill-opacity:1;stroke:none;stroke-width:23.5257;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       d="M 1113.0559,326.33601 V 176.33599 H 963.05588 l 38.00002,38 h 74 v 74.00002 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:193.635px;font-family:Tahoma;-inkscape-font-specification:'Tahoma Bold';fill:#4545b4;fill-opacity:1;stroke:none;stroke-width:484.086;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       x="271.69208"
+       y="360.16302"
+       id="text4684"><tspan
+         sodipodi:role="line"
+         id="tspan4682"
+         x="271.69208"
+         y="360.16302"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:'Tahoma Bold';stroke-width:484.086">Screen</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:208.79px;font-family:Tahoma;-inkscape-font-specification:'Tahoma Bold';fill:#4545b4;fill-opacity:1;stroke:none;stroke-width:521.973;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       x="518.52765"
+       y="553.13312"
+       id="text4684-7"><tspan
+         sodipodi:role="line"
+         id="tspan4682-1"
+         x="518.52765"
+         y="553.13312"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:'Tahoma Bold';stroke-width:521.973">Sizer</tspan></text>
+  </g>
+</svg>
