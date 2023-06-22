@@ -101,7 +101,7 @@ You can setup these eslint rules to enforce some of the guidelines above:
 
 - Only apps with the **expo dev menu** have access to the button to enable screen sizer mode for now
 - **Landscape mode** is not supported
-- On android, the **status bar** inset is (probably 🤔) applied as if the status bar is visible and translucent
+- On android, the **status bar** inset is applied as if the status bar is visible and translucent
 - **Keyboard insets** emulation is very experimental, don't trust it too much
 - If the "base device" is smaller than the "sized screen", behaviour is undefined
 
