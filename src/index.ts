@@ -11,3 +11,5 @@ export const setup = (
 export const Wrapper = (
   __DEV__ ? WrapperInternal : IdentityComponent
 ) as typeof WrapperInternal;
+
+export { deviceSizes } from './sizes';
