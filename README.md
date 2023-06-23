@@ -46,7 +46,18 @@ export const App = () => {
 
   return (
     <SafeAreaProvider>
-      <ScreenSizer.Wrapper device={ScreenSizer.deviceSizes['iPhone SE 2016']}>
+      <ScreenSizer.Wrapper
+        device={[
+          ScreenSizer.deviceSizes['iPhone SE 2016'],
+          {
+            name: 'custom device',
+            width: 200,
+            height: 400,
+            insets: { top: 20, bottom: 20 },
+            keyboardHeightMin: 300,
+          },
+        ]}
+      >
         {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider` but **around** any provider or component that uses safe area dimensions */}
         {/* The rest of your providers and your app */}
       </ScreenSizer.Wrapper>
@@ -62,9 +73,9 @@ so you can safely add them without adding `__DEV__` conditions yourself.
 
 - We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device"
   to develop on.
-- The `Wrapper` prop `device` (optional) is the device you want to emulate. You can find
+- The `Wrapper` prop `devices` (optional) is the list of devices you want to emulate. You can find
   the list of available devices in `ScreenSizer.deviceSizes`, or pass a custom size.
-  By default, the `iPhone SE 2016` size will be used.
+  By default, all list `ScreenSizer.deviceSizes` is used.
 - To toggle the Screen Sizer:
 
   - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
@@ -79,6 +90,9 @@ so you can safely add them without adding `__DEV__` conditions yourself.
     | Bare React Native      |          ✅           |      ❌       |        ✅         |
     | Expo Go                |          ❌           |      ❌       |        ✅         |
     | Expo Custom Dev Client |          ✅           |      ✅       |        ✅         |
+
+- You can navigate between the different devices with the arrows on the top left
+  of the screen sizer.
 
 ## Making it work well
 
