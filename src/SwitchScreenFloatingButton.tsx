@@ -1,6 +1,10 @@
 import React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import LeftArrow from '../assets/images/LeftArrow.png';
+import RightArrow from '../assets/images/RightArrow.png';
+import ScreenInfo from '../assets/images/ScreenInfo.png';
 
 type SwitchScreenFloatingButtonProps = {
   handlePrevScreen: () => void;
@@ -14,9 +18,17 @@ export const SwitchScreenFloatingButton = ({
   const { top } = useSafeAreaInsets();
   return (
     <View style={[styles.buttonsContainer, { top: top }]}>
-      <Button onPress={handlePrevScreen} title="<" color="black" />
+      <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>
+        <Image source={LeftArrow} style={styles.icon} />
+      </TouchableOpacity>
       <View style={styles.divider} />
-      <Button onPress={handleNextScreen} title=">" color="black" />
+      <View style={styles.iconContainer}>
+        <Image source={ScreenInfo} style={styles.icon} />
+      </View>
+      <View style={styles.divider} />
+      <TouchableOpacity onPress={handleNextScreen} style={styles.iconContainer}>
+        <Image source={RightArrow} style={styles.icon} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -27,16 +39,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFD7A1BB',
-    borderColor: 'black',
+    backgroundColor: '#4545BB',
+    borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
-    gap: 4,
   },
   divider: {
     width: 1,
-    height: '80%',
-    backgroundColor: 'black',
-    borderRadius: 1,
+    height: '70%',
+    backgroundColor: 'white',
+  },
+  iconContainer: {
+    padding: 6,
+  },
+  icon: {
+    width: 30,
+    height: 30,
   },
 });
