@@ -16,10 +16,9 @@ Currently, screen-sizer will only work with expo projects.
 yarn add react-native-screen-sizer
 ```
 
-You'll need to have these dependencies installed:
+You'll need to have the `react-native-safe-area-context` dependency installed:
 
 ```
-npx expo install expo-dev-client
 npx expo install react-native-safe-area-context
 ```
 
@@ -55,8 +54,10 @@ export const App = () => {
 - The `Wrapper` prop `device` is the device you want to emulate. You can find the list of available devices in `ScreenSizer.deviceSizes`. You can also pass a custom device size object.
 - `device` is optional. If you don't pass it, an `iPhone SE 2016` size will be used.
 - We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on.
-- Open the expo dev menu (cmd+d) and tap "Toggle Screen Sizer"
-- You're in screen sizer mode!
+- To toggle the Screen Sizer:
+  - If you use expo, open the expo dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd>) and tap `"📐 Toggle Screen Sizer"` (you'll need to have `expo-dev-menu` installed in your project)
+  - **OR** if you don't use expo, open the react native dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd>) and tap `"📐 Toggle Screen Sizer"`
+  - **OR** import the function `ScreenSizer.toggleIsEnabled()` in your code and link it to a button to activate the screen sizer!
 
 ## Making it work well
 
@@ -101,11 +102,10 @@ You can setup these eslint rules to enforce some of the guidelines above:
 
 ### Current limitations
 
-- Only apps with the **expo dev menu** have access to the button to enable screen sizer mode for now
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
 - **Keyboard insets** emulation is very experimental, don't trust it too much
-- If the "base device" is smaller than the "sized screen", behaviour is undefined
+- If the "base device" is smaller than the "sized screen", behavior is undefined
 
 ## Contributing
 
