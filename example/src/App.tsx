@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ScreenSizer from 'react-native-screen-sizer';
 
@@ -11,7 +11,11 @@ export default function App() {
     <SafeAreaProvider>
       <ScreenSizer.Wrapper>
         <View style={styles.container}>
-          <Text>Coucou!</Text>
+          <Text style={styles.title}>ScreenSizer Demo Application</Text>
+          <Button
+            onPress={() => ScreenSizer.toggleIsEnabled()}
+            title="Toggle Screen Sizer"
+          />
         </View>
       </ScreenSizer.Wrapper>
     </SafeAreaProvider>
@@ -23,5 +27,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    fontSize: 28,
+    textAlign: 'center',
+    marginBottom: 28,
   },
 });

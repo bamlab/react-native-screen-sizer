@@ -81,10 +81,10 @@
   },
   "peerDependenciesMeta": {
     "expo": {
-      "optional": false
+      "optional": true
     },
     "expo-dev-menu": {
-      "optional": false
+      "optional": true
     }
   },
   "engines": {
