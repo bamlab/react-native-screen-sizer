@@ -12,10 +12,14 @@ import { deviceSizes } from './sizes';
 import { useStore } from './state';
 import type { ScreenDescription } from './types';
 
-const screenDescription: ScreenDescription = deviceSizes['iPhone SE 2016'];
+type WrapperMemoProps = PropsWithChildren<{
+  device?: ScreenDescription;
+}>;
 
-const WrapperMemo = ({ children }: PropsWithChildren) => {
+const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
   const { isEnabled } = useStore();
+  const screenDescription: ScreenDescription =
+    device || deviceSizes['iPhone SE 2016'];
 
   const realInsets = useSafeAreaInsets();
 
