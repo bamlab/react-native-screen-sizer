@@ -2,13 +2,21 @@ import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export const SwitchScreenFloatingButton = () => {
+type SwitchScreenFloatingButtonProps = {
+  handlePrevScreen: () => void;
+  handleNextScreen: () => void;
+};
+
+export const SwitchScreenFloatingButton = ({
+  handleNextScreen,
+  handlePrevScreen,
+}: SwitchScreenFloatingButtonProps) => {
   const { top } = useSafeAreaInsets();
   return (
     <View style={[styles.buttonsContainer, { top: top }]}>
-      <Button title="<" color="black" />
+      <Button onPress={handlePrevScreen} title="<" color="black" />
       <View style={styles.divider} />
-      <Button title=">" color="black" />
+      <Button onPress={handleNextScreen} title=">" color="black" />
     </View>
   );
 };
