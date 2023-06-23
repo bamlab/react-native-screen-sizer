@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -43,6 +43,15 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
       (index) => (index + devicesList.length - 1) % devicesList.length
     );
   };
+
+  const { width: baseWidth, height: baseHeight } = useWindowDimensions();
+  const { width, height } = selectedDevice;
+
+  if (isEnabled && (baseWidth < width || baseHeight < height)) {
+    console.warn(
+      'ScreenSizer: The base device is too small for the device you want to emulate. Please choose a bigger base device or a smaller emulated device.'
+    );
+  }
 
   const realInsets = useSafeAreaInsets();
 
