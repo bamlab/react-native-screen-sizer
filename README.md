@@ -39,7 +39,7 @@ export const App = () => {
 
   return (
     <SafeAreaProvider>
-      <ScreenSizer.Wrapper>
+      <ScreenSizer.Wrapper device={ScreenSizer.deviceSizes['iPhone SE 2016']}>
         {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider` but **around** any provider or component that uses safe area dimensions */}
         {/* The rest of your providers and your app */}
       </ScreenSizer.Wrapper>
@@ -52,6 +52,8 @@ export const App = () => {
 
 ## Usage
 
+- The `Wrapper` prop `device` is the device you want to emulate. You can find the list of available devices in `ScreenSizer.deviceSizes`. You can also pass a custom device size object.
+- `device` is optional. If you don't pass it, an `iPhone SE 2016` size will be used.
 - We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on.
 - Open the expo dev menu (cmd+d) and tap "Toggle Screen Sizer"
 - You're in screen sizer mode!
