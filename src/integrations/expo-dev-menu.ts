@@ -4,9 +4,15 @@ import { store } from '../state';
  * NOTE: this will override any other custom items, not good!
  */
 export const registerExpoDevMenuItem = async () => {
+  let ExpoDevMenu;
   try {
-    const ExpoDevMenu = await import('expo-dev-menu');
+    ExpoDevMenu = await import('expo-dev-menu');
+  } catch {
+    console.log('ScreenSizer: skipped registration of item in expo dev menu.');
+    return;
+  }
 
+  try {
     await ExpoDevMenu.registerDevMenuItems([
       {
         name: '📐 Toggle Screen Sizer',
@@ -14,6 +20,9 @@ export const registerExpoDevMenuItem = async () => {
       },
     ]);
   } catch (error) {
-    console.log('Error with expo-dev-menu', error);
+    console.warn(
+      'ScreenSizer: registration of item in expo dev menu failed',
+      error
+    );
   }
 };

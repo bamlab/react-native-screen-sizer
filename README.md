@@ -10,17 +10,25 @@ Quickly check how your app looks on different screen sizes.
 
 ## Installation
 
-Currently, screen-sizer will only work with expo projects.
-
 ```sh
 yarn add react-native-screen-sizer
 ```
 
-You'll need to have the `react-native-safe-area-context` dependency installed:
+You'll also need to have these dependencies installed:
 
-```
-npx expo install react-native-safe-area-context
-```
+- if you use `expo go`:
+  ```bash
+  npx expo install react-native-safe-area-context
+  ```
+- if you use `expo` with a custom build:
+  ```bash
+  npx expo install react-native-safe-area-context expo-dev-client
+  ```
+- if you use a bare React Native project:
+  ```bash
+  yarn add react-native-safe-area-context
+  npx pod-install
+  ```
 
 Then, add it to `App.tsx`:
 
@@ -47,17 +55,23 @@ export const App = () => {
 };
 ```
 
-**NOTE**: The `Wrapper` and the setup function are no-ops in release builds, so you can safely add them without adding `__DEV__` conditions yourself.
+**NOTE**: The `Wrapper` and the setup function are no-ops in release builds,
+so you can safely add them without adding `__DEV__` conditions yourself.
 
 ## Usage
 
-- The `Wrapper` prop `device` is the device you want to emulate. You can find the list of available devices in `ScreenSizer.deviceSizes`. You can also pass a custom device size object.
+- The `Wrapper` prop `device` is the device you want to emulate. You can find
+  the list of available devices in `ScreenSizer.deviceSizes`. You can also
+  pass a custom device size object.
 - `device` is optional. If you don't pass it, an `iPhone SE 2016` size will be used.
-- We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on.
+- We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device"
+  to develop on.
 - To toggle the Screen Sizer:
-  - If you use expo, open the expo dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd>) and tap `"📐 Toggle Screen Sizer"` (you'll need to have `expo-dev-menu` installed in your project)
-  - **OR** if you don't use expo, open the react native dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd>) and tap `"📐 Toggle Screen Sizer"`
-  - **OR** import the function `ScreenSizer.toggleIsEnabled()` in your code and link it to a button to activate the screen sizer!
+  - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
+    <kbd>⌘ cmd</kbd> + <kbd>M</kbd> on Android)
+    and tap `"📐 Toggle Screen Sizer"`
+  - **OR** import the function `ScreenSizer.toggleIsEnabled()` in your code
+    and link it to a button to activate the screen sizer!
 
 ## Making it work well
 
