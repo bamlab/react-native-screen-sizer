@@ -8,6 +8,7 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
+import { SwitchScreenFloatingButton } from './SwitchScreenFloatingButton';
 import { deviceSizes } from './sizes';
 import { useStore } from './state';
 import type { ScreenDescription } from './types';
@@ -79,6 +80,7 @@ const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
           </View>
         </SafeAreaInsetsContext.Provider>
       </SafeAreaFrameContext.Provider>
+      {isEnabled && <SwitchScreenFloatingButton />}
     </View>
   );
 };
