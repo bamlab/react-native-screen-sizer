@@ -74,11 +74,11 @@ so you can safely add them without adding `__DEV__` conditions yourself.
     and link it to a button to activate the screen sizer!
   - Compatibility of each feature by project type:
 
-    |                  | ReactNative Dev Menu | Expo Dev Menu | `toggle` function |
-    | ---------------- | :------------------: | :-----------: | :---------------: |
-    | Bare ReactNative |          ✅          |      ❌       |        ✅         |
-    | Expo Go          |          ❌          |      ❌       |        ✅         |
-    | Expo             |          ✅          |      ✅       |        ✅         |
+    |                        | React Native Dev Menu | Expo Dev Menu | `toggle` function |
+    | ---------------------- | :-------------------: | :-----------: | :---------------: |
+    | Bare React Native      |          ✅           |      ❌       |        ✅         |
+    | Expo Go                |          ❌           |      ❌       |        ✅         |
+    | Expo Custom Dev Client |          ✅           |      ✅       |        ✅         |
 
 ## Making it work well
 
