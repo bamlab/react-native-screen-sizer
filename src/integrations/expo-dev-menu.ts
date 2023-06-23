@@ -8,7 +8,6 @@ export const registerExpoDevMenuItem = async () => {
   try {
     ExpoDevMenu = await import('expo-dev-menu');
   } catch {
-    console.log('ScreenSizer: skipped registration of item in expo dev menu.');
     return;
   }
 

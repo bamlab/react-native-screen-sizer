@@ -60,18 +60,25 @@ so you can safely add them without adding `__DEV__` conditions yourself.
 
 ## Usage
 
-- The `Wrapper` prop `device` is the device you want to emulate. You can find
-  the list of available devices in `ScreenSizer.deviceSizes`. You can also
-  pass a custom device size object.
-- `device` is optional. If you don't pass it, an `iPhone SE 2016` size will be used.
 - We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device"
   to develop on.
+- The `Wrapper` prop `device` (optional) is the device you want to emulate. You can find
+  the list of available devices in `ScreenSizer.deviceSizes`, or pass a custom size.
+  By default, the `iPhone SE 2016` size will be used.
 - To toggle the Screen Sizer:
+
   - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
     <kbd>⌘ cmd</kbd> + <kbd>M</kbd> on Android)
     and tap `"📐 Toggle Screen Sizer"`
   - **OR** import the function `ScreenSizer.toggleIsEnabled()` in your code
     and link it to a button to activate the screen sizer!
+  - Compatibility of each feature by project type:
+
+    |                  | ReactNative Dev Menu | Expo Dev Menu | `toggle` function |
+    | ---------------- | :------------------: | :-----------: | :---------------: |
+    | Bare ReactNative |          ✅          |      ❌       |        ✅         |
+    | Expo Go          |          ❌          |      ❌       |        ✅         |
+    | Expo             |          ✅          |      ✅       |        ✅         |
 
 ## Making it work well
 
