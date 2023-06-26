@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -125,10 +125,16 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
         </SafeAreaInsetsContext.Provider>
       </SafeAreaFrameContext.Provider>
       {isEnabled && (
-        <SwitchScreenFloatingButton
-          handleNextScreen={handleNextScreen}
-          handlePrevScreen={handlePrevScreen}
-        />
+        <>
+          <SwitchScreenFloatingButton
+            handleNextScreen={handleNextScreen}
+            handlePrevScreen={handlePrevScreen}
+          />
+          <Text style={[styles.deviceInfo, { bottom: realInsets.bottom }]}>
+            {selectedDevice.name ? `${selectedDevice.name} | ` : ''}
+            {`${selectedDevice.width} x ${selectedDevice.height}`}
+          </Text>
+        </>
       )}
     </View>
   );
@@ -155,5 +161,12 @@ const styles = StyleSheet.create({
   },
   fakeScreen: {
     backgroundColor: 'white',
+  },
+
+  deviceInfo: {
+    backgroundColor: '#FFFFFF99',
+    position: 'absolute',
+    paddingHorizontal: 4,
+    color: 'black',
   },
 });
