@@ -13,7 +13,7 @@ export default function App() {
         <View style={styles.container}>
           <Text style={styles.title}>ScreenSizer Demo Application</Text>
           <Button
-            onPress={() => ScreenSizer.toggleIsEnabled()}
+            onPress={() => ScreenSizer.toggleScreenSizer()}
             title="Toggle Screen Sizer"
           />
         </View>

@@ -80,7 +80,7 @@ so you can safely add them without adding `__DEV__` conditions yourself.
   - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
     <kbd>⌘ cmd</kbd> + <kbd>M</kbd> on Android)
     and tap `"📐 Toggle Screen Sizer"`
-  - **OR** import the function `ScreenSizer.toggleIsEnabled()` in your code
+  - **OR** import the function `ScreenSizer.toggleScreenSizer()` in your code
     and link it to a button to activate the screen sizer!
   - Compatibility of each feature by project type:
 
