@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   SafeAreaFrameContext,
@@ -8,18 +8,41 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
-import { deviceSizes } from './sizes';
+import { SwitchScreenFloatingButton } from './SwitchScreenFloatingButton';
+import { defaultDevices } from './defaultDevices';
 import { useStore } from './state';
-import type { ScreenDescription } from './types';
+import type { Device } from './types';
 
 type WrapperMemoProps = PropsWithChildren<{
-  device?: ScreenDescription;
+  devices?: Array<Device>;
 }>;
 
-const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
+const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
   const { isEnabled } = useStore();
-  const screenDescription: ScreenDescription =
-    device || deviceSizes['iPhone SE 2016'];
+  const devicesList = devices || defaultDevices.all;
+  const [selectedDeviceIndex, setSelectedDeviceIndex] = useState(0);
+  const selectedDevice = devicesList[selectedDeviceIndex];
+
+  if (selectedDevice === undefined) {
+    throw new Error(
+      `ScreenSizer: No screen config for index ${selectedDeviceIndex}.`
+    );
+  }
+
+  useEffect(() => {
+    console.log(
+      `ScreenSizer: use device "${selectedDevice.name}" (${selectedDevice.width}x${selectedDevice.height}).`
+    );
+  }, [selectedDevice]);
+
+  const handleNextScreen = () => {
+    setSelectedDeviceIndex((index) => (index + 1) % devicesList.length);
+  };
+  const handlePrevScreen = () => {
+    setSelectedDeviceIndex(
+      (index) => (index + devicesList.length - 1) % devicesList.length
+    );
+  };
 
   const realInsets = useSafeAreaInsets();
 
@@ -29,7 +52,7 @@ const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
         right: 0,
         top: 0,
         bottom: 0,
-        ...screenDescription.insets,
+        ...selectedDevice.insets,
       }
     : realInsets;
 
@@ -39,8 +62,8 @@ const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
     ? {
         x: 0,
         y: 0,
-        height: screenDescription.height,
-        width: screenDescription.width,
+        height: selectedDevice.height,
+        width: selectedDevice.width,
       }
     : realFrame;
 
@@ -56,10 +79,7 @@ const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
           <View
             style={[
               styles.fakeScreen,
-              {
-                width: frame.width,
-                height: frame.height,
-              },
+              { width: frame.width, height: frame.height },
             ]}
           >
             {children}
@@ -79,6 +99,12 @@ const WrapperMemo = ({ children, device }: WrapperMemoProps) => {
           </View>
         </SafeAreaInsetsContext.Provider>
       </SafeAreaFrameContext.Provider>
+      {isEnabled && (
+        <SwitchScreenFloatingButton
+          handleNextScreen={handleNextScreen}
+          handlePrevScreen={handlePrevScreen}
+        />
+      )}
     </View>
   );
 };

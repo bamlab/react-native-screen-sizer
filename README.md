@@ -38,7 +38,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // 👋 Add the import
 import * as ScreenSizer from 'react-native-screen-sizer';
 
-// 👋 Call this at the top-level of App.tsx. It will handle some things like patching keyboard events.
+// 👋 Call this at the top-level of App.tsx. It will handle some things like register shortcuts in the dev menu.
 ScreenSizer.setup();
 
 export const App = () => {
@@ -46,7 +46,17 @@ export const App = () => {
 
   return (
     <SafeAreaProvider>
-      <ScreenSizer.Wrapper device={ScreenSizer.deviceSizes['iPhone SE 2016']}>
+      <ScreenSizer.Wrapper
+        devices={[
+          ScreenSizer.defaultDevices.iPhoneSE2016,
+          {
+            name: 'Custom Device',
+            width: 200,
+            height: 400,
+            insets: { top: 20, bottom: 20 },
+          },
+        ]}
+      >
         {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider` but **around** any provider or component that uses safe area dimensions */}
         {/* The rest of your providers and your app */}
       </ScreenSizer.Wrapper>
@@ -62,15 +72,15 @@ so you can safely add them without adding `__DEV__` conditions yourself.
 
 - We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device"
   to develop on.
-- The `Wrapper` prop `device` (optional) is the device you want to emulate. You can find
-  the list of available devices in `ScreenSizer.deviceSizes`, or pass a custom size.
-  By default, the `iPhone SE 2016` size will be used.
+- The `Wrapper` prop `devices` (optional) is the list of devices you want to emulate. You can find
+  the available devices in `ScreenSizer.defaultDevices`, or pass a custom size.
+  By default, the list `ScreenSizer.defaultDevices.all` is used.
 - To toggle the Screen Sizer:
 
   - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
     <kbd>⌘ cmd</kbd> + <kbd>M</kbd> on Android)
     and tap `"📐 Toggle Screen Sizer"`
-  - **OR** import the function `ScreenSizer.toggleIsEnabled()` in your code
+  - **OR** import the function `ScreenSizer.toggleScreenSizer()` in your code
     and link it to a button to activate the screen sizer!
   - Compatibility of each feature by project type:
 
@@ -79,6 +89,9 @@ so you can safely add them without adding `__DEV__` conditions yourself.
     | Bare React Native      |          ✅           |      ❌       |        ✅         |
     | Expo Go                |          ❌           |      ❌       |        ✅         |
     | Expo Custom Dev Client |          ✅           |      ✅       |        ✅         |
+
+- You can navigate between the different devices with the arrows on the top left
+  of the screen sizer.
 
 ## Making it work well
 
@@ -125,7 +138,6 @@ You can setup these eslint rules to enforce some of the guidelines above:
 
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
-- **Keyboard insets** emulation is very experimental, don't trust it too much
 - If the "base device" is smaller than the "sized screen", behavior is undefined
 
 ## Contributing

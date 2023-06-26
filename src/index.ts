@@ -13,8 +13,8 @@ export const Wrapper = (
   __DEV__ ? WrapperInternal : IdentityComponent
 ) as typeof WrapperInternal;
 
-export const toggleIsEnabled = __DEV__
+export const toggleScreenSizer = __DEV__
   ? () => store.toggleIsEnabled()
   : () => {};
 
-export { deviceSizes } from './sizes';
+export { defaultDevices } from './defaultDevices';
