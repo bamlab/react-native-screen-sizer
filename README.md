@@ -94,6 +94,7 @@ so you can safely add them without adding `__DEV__` conditions yourself.
 
 - You can navigate between the different devices with the arrows on the top left
   of the screen sizer.
+- You can see the emulated device information (`deviceName | width x height`) on the bottom of the screen sizer.
 
 ## Making it work well
 
