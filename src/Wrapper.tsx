@@ -126,7 +126,9 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
           />
           <Text style={[styles.deviceInfo, { bottom: realInsets.bottom }]}>
             {selectedDevice.name ? `${selectedDevice.name} | ` : ''}
-            {`${selectedDevice.width} x ${selectedDevice.height}`}
+            {`${selectedDevice.width.toFixed(
+              0
+            )} x ${selectedDevice.height.toFixed(0)}`}
           </Text>
         </>
       )}
