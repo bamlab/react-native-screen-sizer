@@ -1,6 +1,15 @@
-import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useRef, useState } from 'react';
+import {
+  GestureResponderEvent,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
 type SwitchScreenFloatingButtonProps = {
   handlePrevScreen: () => void;
@@ -12,9 +21,35 @@ export const SwitchScreenFloatingButton = ({
   handlePrevScreen,
 }: SwitchScreenFloatingButtonProps) => {
   const { top } = useSafeAreaInsets();
+  const { width } = useSafeAreaFrame();
+  const [position, setPosition] = useState({
+    x: width / 2 - 65,
+    y: top + 12,
+  });
+  const startMovePosition = useRef({ x: 0, y: 0 });
+
+  const handleStartMove = (event: GestureResponderEvent) => {
+    const { pageX, pageY } = event.nativeEvent;
+    startMovePosition.current = {
+      x: pageX - position.x,
+      y: pageY - position.y,
+    };
+  };
+
+  const handleMove = (event: GestureResponderEvent) => {
+    const { pageX, pageY } = event.nativeEvent;
+    setPosition({
+      x: pageX - startMovePosition.current.x,
+      y: pageY - startMovePosition.current.y,
+    });
+  };
 
   return (
-    <View style={[styles.buttonsContainer, { top: top }]}>
+    <View
+      style={[styles.buttonsContainer, { top: position.y, left: position.x }]}
+      onTouchStart={handleStartMove}
+      onTouchMove={handleMove}
+    >
       <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>
         <Image
           source={require('../assets/images/LeftArrow.png')}
