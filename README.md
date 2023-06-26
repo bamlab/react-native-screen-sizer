@@ -47,6 +47,7 @@ export const App = () => {
   return (
     <SafeAreaProvider>
       <ScreenSizer.Wrapper
+        // 👋 The list of devices that will be emulated. You can use some of our default devices, custom ones, or the keyword 'hostDevice' to reference your current host device.
         devices={[
           ScreenSizer.defaultDevices.iPhoneSE2016,
           {
@@ -55,6 +56,7 @@ export const App = () => {
             height: 400,
             insets: { top: 20, bottom: 20 },
           },
+          'hostDevice',
         ]}
       >
         {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider` but **around** any provider or component that uses safe area dimensions */}
