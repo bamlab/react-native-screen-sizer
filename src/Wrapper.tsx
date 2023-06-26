@@ -20,6 +20,22 @@ type WrapperMemoProps = PropsWithChildren<{
 const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
   const { isEnabled } = useStore();
   const devicesList = devices || defaultDevices.all;
+
+  const { width: baseWidth, height: baseHeight } = useWindowDimensions();
+
+  useEffect(() => {
+    devicesList.forEach((device) => {
+      if (
+        isEnabled &&
+        (baseWidth < device?.width || baseHeight < device?.height)
+      ) {
+        console.warn(
+          `ScreenSizer: ${device?.name} is too large for the base device. Please choose a bigger base device or a smaller emulated device.`
+        );
+      }
+    });
+  }, [devicesList, baseWidth, baseHeight, isEnabled]);
+
   const [selectedDeviceIndex, setSelectedDeviceIndex] = useState(0);
   const selectedDevice = devicesList[selectedDeviceIndex];
 
@@ -43,15 +59,6 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
       (index) => (index + devicesList.length - 1) % devicesList.length
     );
   };
-
-  const { width: baseWidth, height: baseHeight } = useWindowDimensions();
-  const { width, height } = selectedDevice;
-
-  if (isEnabled && (baseWidth < width || baseHeight < height)) {
-    console.warn(
-      'ScreenSizer: The base device is too small for the device you want to emulate. Please choose a bigger base device or a smaller emulated device.'
-    );
-  }
 
   const realInsets = useSafeAreaInsets();
 
