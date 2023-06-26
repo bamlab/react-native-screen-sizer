@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {
-  GestureResponderEvent,
+  Animated,
   Image,
+  PanResponder,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -22,33 +23,30 @@ export const SwitchScreenFloatingButton = ({
 }: SwitchScreenFloatingButtonProps) => {
   const { top } = useSafeAreaInsets();
   const { width } = useSafeAreaFrame();
-  const [position, setPosition] = useState({
-    x: width / 2 - 65,
-    y: top + 12,
-  });
-  const startMovePosition = useRef({ x: 0, y: 0 });
 
-  const handleStartMove = (event: GestureResponderEvent) => {
-    const { pageX, pageY } = event.nativeEvent;
-    startMovePosition.current = {
-      x: pageX - position.x,
-      y: pageY - position.y,
-    };
-  };
+  const pan = useRef(new Animated.ValueXY()).current;
 
-  const handleMove = (event: GestureResponderEvent) => {
-    const { pageX, pageY } = event.nativeEvent;
-    setPosition({
-      x: pageX - startMovePosition.current.x,
-      y: pageY - startMovePosition.current.y,
-    });
-  };
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => pan.extractOffset(),
+    })
+  ).current;
 
   return (
-    <View
-      style={[styles.buttonsContainer, { top: position.y, left: position.x }]}
-      onTouchStart={handleStartMove}
-      onTouchMove={handleMove}
+    <Animated.View
+      style={[
+        styles.buttonsContainer,
+        {
+          top: top + 12,
+          left: width / 2 - 65,
+          transform: [{ translateX: pan.x }, { translateY: pan.y }],
+        },
+      ]}
+      {...panResponder.panHandlers}
     >
       <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>
         <Image
@@ -70,7 +68,7 @@ export const SwitchScreenFloatingButton = ({
           style={styles.icon}
         />
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 };
 
