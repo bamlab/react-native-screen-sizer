@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import {
   SafeAreaFrameContext,
   SafeAreaInsetsContext,
@@ -21,20 +21,20 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
   const { isEnabled } = useStore();
   const devicesList = devices || defaultDevices.all;
 
-  const { width: baseWidth, height: baseHeight } = useWindowDimensions();
+  const realFrame = useSafeAreaFrame();
 
   useEffect(() => {
     devicesList.forEach((device) => {
       if (
         isEnabled &&
-        (baseWidth < device?.width || baseHeight < device?.height)
+        (realFrame.width < device.width || realFrame.height < device.height)
       ) {
         console.warn(
-          `ScreenSizer: ${device?.name} is too large for the base device. Please choose a bigger base device or a smaller emulated device.`
+          `ScreenSizer: ${device.name} is too large for the base device. Please choose a bigger base device or a smaller emulated device.`
         );
       }
     });
-  }, [devicesList, baseWidth, baseHeight, isEnabled]);
+  }, [devicesList, isEnabled, realFrame]);
 
   const [selectedDeviceIndex, setSelectedDeviceIndex] = useState(0);
   const selectedDevice = devicesList[selectedDeviceIndex];
@@ -71,8 +71,6 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
         ...selectedDevice.insets,
       }
     : realInsets;
-
-  const realFrame = useSafeAreaFrame();
 
   const frame = isEnabled
     ? {
