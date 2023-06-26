@@ -115,7 +115,7 @@ If you use "static" dimensions, you app won't re-render properly when the device
 
 ### Use a big screen as the "base device"
 
-We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on. If your base device is too small for the screen you're using, you'll get a warning in the console.
+We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on. If your base device is too small for one of the screens you want to emulate, you'll get a warning in the console.
 
 ### Eslint config
 
