@@ -12,6 +12,7 @@ export const SwitchScreenFloatingButton = ({
   handlePrevScreen,
 }: SwitchScreenFloatingButtonProps) => {
   const { top } = useSafeAreaInsets();
+
   return (
     <View style={[styles.buttonsContainer, { top: top }]}>
       <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>

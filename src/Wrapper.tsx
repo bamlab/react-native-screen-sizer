@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import {
   SafeAreaFrameContext,
@@ -28,6 +28,12 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
       `ScreenSizer: No screen config for index ${selectedDeviceIndex}.`
     );
   }
+
+  useEffect(() => {
+    console.log(
+      `ScreenSizer: use device "${selectedDevice.name}" (${selectedDevice.width}x${selectedDevice.height}).`
+    );
+  }, [selectedDevice]);
 
   const handleNextScreen = () => {
     setSelectedDeviceIndex((index) => (index + 1) % devicesList.length);
