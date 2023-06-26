@@ -1,4 +1,4 @@
-export type ScreenDescription = {
+export type Device = {
   name: string;
   width: number;
   height: number;
@@ -6,5 +6,4 @@ export type ScreenDescription = {
     top: number;
     bottom: number;
   };
-  keyboardHeightMin?: number;
 };

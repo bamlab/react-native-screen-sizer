@@ -38,7 +38,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 // 👋 Add the import
 import * as ScreenSizer from 'react-native-screen-sizer';
 
-// 👋 Call this at the top-level of App.tsx. It will handle some things like patching keyboard events.
+// 👋 Call this at the top-level of App.tsx. It will handle some things like register shortcuts in the dev menu.
 ScreenSizer.setup();
 
 export const App = () => {
@@ -47,14 +47,13 @@ export const App = () => {
   return (
     <SafeAreaProvider>
       <ScreenSizer.Wrapper
-        device={[
-          ScreenSizer.deviceSizes['iPhone SE 2016'],
+        devices={[
+          ScreenSizer.defaultDevices.iPhoneSE2016,
           {
-            name: 'custom device',
+            name: 'Custom Device',
             width: 200,
             height: 400,
             insets: { top: 20, bottom: 20 },
-            keyboardHeightMin: 300,
           },
         ]}
       >
@@ -74,8 +73,8 @@ so you can safely add them without adding `__DEV__` conditions yourself.
 - We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device"
   to develop on.
 - The `Wrapper` prop `devices` (optional) is the list of devices you want to emulate. You can find
-  the list of available devices in `ScreenSizer.deviceSizes`, or pass a custom size.
-  By default, all list `ScreenSizer.deviceSizes` is used.
+  the available devices in `ScreenSizer.defaultDevices`, or pass a custom size.
+  By default, the list `ScreenSizer.defaultDevices.all` is used.
 - To toggle the Screen Sizer:
 
   - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
@@ -139,7 +138,6 @@ You can setup these eslint rules to enforce some of the guidelines above:
 
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
-- **Keyboard insets** emulation is very experimental, don't trust it too much
 - If the "base device" is smaller than the "sized screen", behavior is undefined
 
 ## Contributing

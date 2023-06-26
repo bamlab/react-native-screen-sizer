@@ -17,4 +17,4 @@ export const toggleIsEnabled = __DEV__
   ? () => store.toggleIsEnabled()
   : () => {};
 
-export { defaultDevices } from './sizes';
+export { defaultDevices } from './defaultDevices';

@@ -9,17 +9,17 @@ import {
 } from 'react-native-safe-area-context';
 
 import { SwitchScreenFloatingButton } from './SwitchScreenFloatingButton';
-import { defaultDevicesArray } from './sizes';
+import { defaultDevices } from './defaultDevices';
 import { useStore } from './state';
-import type { ScreenDescription } from './types';
+import type { Device } from './types';
 
 type WrapperMemoProps = PropsWithChildren<{
-  devices?: Array<ScreenDescription | undefined>;
+  devices?: Array<Device>;
 }>;
 
 const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
   const { isEnabled } = useStore();
-  const devicesList = devices ?? defaultDevicesArray;
+  const devicesList = devices || defaultDevices.all;
   const [selectedDeviceIndex, setSelectedDeviceIndex] = useState(0);
   const selectedDevice = devicesList[selectedDeviceIndex];
 
@@ -73,10 +73,7 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
           <View
             style={[
               styles.fakeScreen,
-              {
-                width: frame.width,
-                height: frame.height,
-              },
+              { width: frame.width, height: frame.height },
             ]}
           >
             {children}
