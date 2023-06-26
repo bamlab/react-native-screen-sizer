@@ -113,6 +113,10 @@ Currently, other ways to read these dimensions (like the ones in the base `react
 
 If you use "static" dimensions, you app won't re-render properly when the device size changes. This applies to the "emulated size" from this package, but also to the real size (eg window resizing on iPad or M1 macs, or switching to landscape mode), so it's a good thing to do anyway!
 
+### Use a big screen as the "base device"
+
+We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on. If your base device is too small for one of the screens you want to emulate, you'll get a warning in the console.
+
 ### Eslint config
 
 You can setup these eslint rules to enforce some of the guidelines above:
@@ -138,7 +142,6 @@ You can setup these eslint rules to enforce some of the guidelines above:
 
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
-- If the "base device" is smaller than the "sized screen", behavior is undefined
 
 ## Contributing
 
