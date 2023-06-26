@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ScreenSizer from 'react-native-screen-sizer';
 
-ScreenSizer.setup();
+ScreenSizer.setup({ activatedByDefault: true });
 
 export default function App() {
   return (

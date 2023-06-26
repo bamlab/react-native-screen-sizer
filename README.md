@@ -39,7 +39,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ScreenSizer from 'react-native-screen-sizer';
 
 // 👋 Call this at the top-level of App.tsx. It will handle some things like register shortcuts in the dev menu.
-ScreenSizer.setup();
+ScreenSizer.setup({ activatedByDefault: false });
 
 export const App = () => {
   // ...
