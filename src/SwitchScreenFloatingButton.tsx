@@ -2,10 +2,6 @@ import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import LeftArrow from '../assets/images/LeftArrow.png';
-import RightArrow from '../assets/images/RightArrow.png';
-import ScreenInfo from '../assets/images/ScreenInfo.png';
-
 type SwitchScreenFloatingButtonProps = {
   handlePrevScreen: () => void;
   handleNextScreen: () => void;
@@ -19,15 +15,24 @@ export const SwitchScreenFloatingButton = ({
   return (
     <View style={[styles.buttonsContainer, { top: top }]}>
       <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>
-        <Image source={LeftArrow} style={styles.icon} />
+        <Image
+          source={require('../assets/images/LeftArrow.png')}
+          style={styles.icon}
+        />
       </TouchableOpacity>
       <View style={styles.divider} />
       <View style={styles.iconContainer}>
-        <Image source={ScreenInfo} style={styles.icon} />
+        <Image
+          source={require('../assets/images/ScreenInfo.png')}
+          style={styles.icon}
+        />
       </View>
       <View style={styles.divider} />
       <TouchableOpacity onPress={handleNextScreen} style={styles.iconContainer}>
-        <Image source={RightArrow} style={styles.icon} />
+        <Image
+          source={require('../assets/images/RightArrow.png')}
+          style={styles.icon}
+        />
       </TouchableOpacity>
     </View>
   );
