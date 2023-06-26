@@ -1,6 +1,16 @@
-import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import React, { useRef } from 'react';
+import {
+  Animated,
+  Image,
+  PanResponder,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {
+  useSafeAreaFrame,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 
 type SwitchScreenFloatingButtonProps = {
   handlePrevScreen: () => void;
@@ -12,9 +22,32 @@ export const SwitchScreenFloatingButton = ({
   handlePrevScreen,
 }: SwitchScreenFloatingButtonProps) => {
   const { top } = useSafeAreaInsets();
+  const { width } = useSafeAreaFrame();
+
+  const pan = useRef(new Animated.ValueXY()).current;
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], {
+        useNativeDriver: false,
+      }),
+      onPanResponderRelease: () => pan.extractOffset(),
+    })
+  ).current;
 
   return (
-    <View style={[styles.buttonsContainer, { top: top }]}>
+    <Animated.View
+      style={[
+        styles.buttonsContainer,
+        {
+          top: top + 12,
+          left: width / 2 - 65,
+          transform: [{ translateX: pan.x }, { translateY: pan.y }],
+        },
+      ]}
+      {...panResponder.panHandlers}
+    >
       <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>
         <Image
           source={require('../assets/images/LeftArrow.png')}
@@ -35,7 +68,7 @@ export const SwitchScreenFloatingButton = ({
           style={styles.icon}
         />
       </TouchableOpacity>
-    </View>
+    </Animated.View>
   );
 };
 
