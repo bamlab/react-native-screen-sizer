@@ -14,14 +14,27 @@ import { useStore } from './state';
 import type { Device } from './types';
 
 type WrapperMemoProps = PropsWithChildren<{
-  devices?: Array<Device>;
+  devices?: Array<Device | 'hostDevice'>;
 }>;
 
 const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
   const { isEnabled } = useStore();
-  const devicesList = devices || defaultDevices.all;
-
   const realFrame = useSafeAreaFrame();
+  const realInsets = useSafeAreaInsets();
+
+  const devicesList =
+    devices?.map<Device>((device) => {
+      if (device === 'hostDevice') {
+        return {
+          name: 'Host Device',
+          width: realFrame.width,
+          height: realFrame.height,
+          insets: realInsets,
+        };
+      } else {
+        return device;
+      }
+    }) || defaultDevices.all;
 
   useEffect(() => {
     devicesList.forEach((device) => {
@@ -59,8 +72,6 @@ const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
       (index) => (index + devicesList.length - 1) % devicesList.length
     );
   };
-
-  const realInsets = useSafeAreaInsets();
 
   const insets = isEnabled
     ? {

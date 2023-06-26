@@ -9,7 +9,9 @@ ScreenSizer.setup();
 export default function App() {
   return (
     <SafeAreaProvider>
-      <ScreenSizer.Wrapper devices={ScreenSizer.defaultDevices.all}>
+      <ScreenSizer.Wrapper
+        devices={[ScreenSizer.defaultDevices.iPhoneSE2016, 'hostDevice']}
+      >
         <View style={styles.container}>
           <Text style={styles.title}>ScreenSizer Demo Application</Text>
           <Button
