@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./assets/screen-sizer-logo.png" alt="Screen Sizer logo" style="width: 100%;max-width:400px;" />
+<img src="./assets/screen-sizer-logo.png" alt="Screen Sizer logo" width="400px" />
 </p>
 
 # ReactNative Screen Sizer
