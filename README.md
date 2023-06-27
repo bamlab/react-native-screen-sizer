@@ -11,7 +11,7 @@ Quickly check how your app looks on different screen sizes.
 ## Installation
 
 ```sh
-yarn add react-native-screen-sizer
+yarn add @bam.tech/react-native-screen-sizer
 ```
 
 You'll also need to have these dependencies installed:
@@ -35,10 +35,11 @@ Then, add it to `App.tsx`:
 ```tsx
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// 👋 Add the import
-import * as ScreenSizer from 'react-native-screen-sizer';
+/* 👋 Add the import */
+import * as ScreenSizer from '@bam.tech/react-native-screen-sizer';
 
-// 👋 Call this at the top-level of App.tsx. It will handle some things like register shortcuts in the dev menu.
+/* 👋 Call this at the top-level of App.tsx. It will handle some things like 
+register shortcuts in the dev menu. The config param is optional. */
 ScreenSizer.setup({ activatedByDefault: false });
 
 export const App = () => {
@@ -47,7 +48,9 @@ export const App = () => {
   return (
     <SafeAreaProvider>
       <ScreenSizer.Wrapper
-        // 👋 The list of devices that will be emulated. You can use some of our default devices, custom ones, or the keyword 'hostDevice' to reference your current host device.
+        /* 👋 The list of devices that will be emulated. You can use some of our
+        default devices, custom ones, or the keyword 'hostDevice' to reference
+        your current host device. */
         devices={[
           ScreenSizer.defaultDevices.iPhoneSE2016,
           {
@@ -59,7 +62,8 @@ export const App = () => {
           'hostDevice',
         ]}
       >
-        {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider` but **around** any provider or component that uses safe area dimensions */}
+        {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider`
+        but around any provider or component that uses safe area dimensions */}
         {/* The rest of your providers and your app */}
       </ScreenSizer.Wrapper>
     </SafeAreaProvider>
