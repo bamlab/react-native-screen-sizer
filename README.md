@@ -8,7 +8,7 @@ Quickly check how your app looks on different screen sizes.
 
 <img src="./assets/demo.gif" alt="Live demo of the usage of the library" width="300" />
 
-## Installation
+## Setup
 
 ```sh
 yarn add @bam.tech/react-native-screen-sizer
@@ -39,8 +39,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as ScreenSizer from '@bam.tech/react-native-screen-sizer';
 
 /* 👋 Call this at the top-level of App.tsx. It will handle some things like 
-register shortcuts in the dev menu. The config param is optional. */
-ScreenSizer.setup({ activatedByDefault: false });
+register shortcuts in the dev menu. */
+ScreenSizer.setup();
 
 export const App = () => {
   // ...
@@ -51,16 +51,7 @@ export const App = () => {
         /* 👋 The list of devices that will be emulated. You can use some of our
         default devices, custom ones, or the keyword 'hostDevice' to reference
         your current host device. */
-        devices={[
-          ScreenSizer.defaultDevices.iPhoneSE2016,
-          {
-            name: 'Custom Device',
-            width: 200,
-            height: 400,
-            insets: { top: 20, bottom: 20 },
-          },
-          'hostDevice',
-        ]}
+        devices={[...ScreenSizer.defaultDevices.all, 'hostDevice']}
       >
         {/* 👋 `ScreenSizer.Wrapper` must be inserted inside `SafeAreaProvider`
         but around any provider or component that uses safe area dimensions */}
@@ -71,8 +62,8 @@ export const App = () => {
 };
 ```
 
-**NOTE**: The `Wrapper` and the setup function are no-ops in release builds,
-so you can safely add them without adding `__DEV__` conditions yourself.
+> **NOTE**: The `Wrapper` and the setup function are no-ops in release builds,
+> so you can safely add them without adding `__DEV__` conditions yourself.
 
 ## Usage
 
@@ -145,16 +136,59 @@ You can setup these eslint rules to enforce some of the guidelines above:
 }
 ```
 
-### Current limitations
+## API
+
+### `ScreenSizer.setup`
+
+A function that should be called on initialization. Accept an optional `config` parameter with the following options:
+
+| Option             | Type              | Description                                                                                      |
+| ------------------ | ----------------- | ------------------------------------------------------------------------------------------------ |
+| activatedByDefault | boolean, optional | Specify if the ScreenSizer should be activated by default when the app starts. Default to false. |
+
+### `ScreenSizer.Wrapper`
+
+A wrapper component to simulate the different screens.
+
+| Prop    | Type                                      | Description                                                                                                                                                          |
+| ------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| devices | `Array<Device \| 'hostDevice'>`, optional | A list of device specifications. If a device is bigger than the host device, a warning will be prompted in the console. Default to `ScreenSizer.defaultDevices.all`. |
+
+> **NOTE**: `Device` has the following type:
+>
+> ```ts
+> type Device = {
+>   name: string;
+>   width: number;
+>   height: number;
+>   insets?: {
+>     top: number;
+>     bottom: number;
+>   };
+> };
+> ```
+
+### `ScreenSizer.defaultDevices`
+
+An object containing different default device specifications, meant to be used for the `devices` props of the wrapper.
+
+| Properties   | Type            | Description: width x height (topInset - bottomInset) |
+| ------------ | --------------- | ---------------------------------------------------- |
+| iPhoneSE2016 | `Device`        | 320 x 568 (20 - 0)                                   |
+| iPhoneSE2022 | `Device`        | 375 x 667 (20 - 0)                                   |
+| iPhone12Mini | `Device`        | 375 x 812 (44 - 34)                                  |
+| iPhone12Pro  | `Device`        | 390 x 844 (47 - 34)                                  |
+| galaxyS8     | `Device`        | 360 x 740 (24 - 0)                                   |
+| all          | `Array<Device>` | List of all previous devices.                        |
+
+### `ScreenSizer.toggleScreenSizer`
+
+A function to activate or deactivate the screen-sizer mode. No parameters.
+
+## Current limitations
 
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
 
 ## 👉 About Bam
 
