@@ -67,53 +67,47 @@ export const App = () => {
 
 ## Usage
 
-- We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device"
-  to develop on.
-- The `Wrapper` prop `devices` (optional) is the list of devices you want to emulate. You can find
-  the available devices in `ScreenSizer.defaultDevices`, or pass a custom size.
-  By default, the list `ScreenSizer.defaultDevices.all` is used.
-- To toggle the Screen Sizer:
+By default, the screen sizer is disabled when you run your app. You can enable it by different ways:
 
-  - Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
-    <kbd>⌘ cmd</kbd> + <kbd>M</kbd> on Android)
-    and tap `"📐 Toggle Screen Sizer"`
-  - **OR** import the function `ScreenSizer.toggleScreenSizer()` in your code
-    and link it to a button to activate the screen sizer!
-  - Compatibility of each feature by project type:
+- Open the dev menu (<kbd>⌘ cmd</kbd> + <kbd>D</kbd> on iOS or
+  <kbd>⌘ cmd</kbd> + <kbd>M</kbd> on Android)
+  and tap `"📐 Toggle Screen Sizer"`
+- or import the function `ScreenSizer.toggleScreenSizer()` in your code
+  and link it to a button to activate the screen sizer
 
-    |                        | React Native Dev Menu | Expo Dev Menu | `toggle` function |
-    | ---------------------- | :-------------------: | :-----------: | :---------------: |
-    | Bare React Native      |          ✅           |      ❌       |        ✅         |
-    | Expo Go                |          ❌           |      ❌       |        ✅         |
-    | Expo Custom Dev Client |          ✅           |      ✅       |        ✅         |
+Compatibility of each method by project type:
 
-- You can navigate between the different devices with the arrows on the top left
-  of the screen sizer.
-- You can see the emulated device information (`deviceName | width x height`) on the bottom of the screen sizer.
+|                        | React Native Dev Menu | Expo Dev Menu | `toggle` function |
+| ---------------------- | :-------------------: | :-----------: | :---------------: |
+| Bare React Native      |          ✅           |      ❌       |        ✅         |
+| Expo Go                |          ❌           |      ❌       |        ✅         |
+| Expo Custom Dev Client |          ✅           |      ✅       |        ✅         |
 
 ## Making it work well
 
 Things should be mostly ok without changing anything in your app code, but you can get better fidelity (and by the way handle screen resizing on device like iPad better) by following these guidelines:
 
-### Read screen / window / safe area dimensions through `react-native-safe-area-context`
+### Use a big screen as the "base device"
+
+We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on.
+
+If your base device is too small for one of the screens you want to emulate, the behavior for this screen is undefined and you'll get a warning in the console.
+
+### Read screen/window/safe-area dimensions through `react-native-safe-area-context`
 
 - ❌ `import { SafeAreaView, useWindowDimensions } from "react-native"`
 - ✅ `import { SafeAreaView, useSafeAreaInsets, useSafeAreaFrame } from "react-native-safe-area-context"`
 
-react-native-screen-sizer adds a custom react-native-safe-area-context provider to emulate the safe area insets and frame of the "sized device".
+`react-native-screen-sizer` adds a custom `react-native-safe-area-context` provider to emulate the safe area insets and frame of the "sized device".
 Currently, other ways to read these dimensions (like the ones in the base `react-native` package) are not supported.
 
-### Always read screen / window / safe area dimensions in a reactive manner
+### Always read screen/window/safe-area dimensions in a reactive manner
 
 - ❌ `import { Dimensions } from "react-native`
 - ❌ `import { initialMetrics } from "react-native-safe-area-context"`
 - ✅ `import { SafeAreaView, useSafeAreaInsets, useSafeAreaFrame } from "react-native-safe-area-context"`
 
 If you use "static" dimensions, you app won't re-render properly when the device size changes. This applies to the "emulated size" from this package, but also to the real size (eg window resizing on iPad or M1 macs, or switching to landscape mode), so it's a good thing to do anyway!
-
-### Use a big screen as the "base device"
-
-We recommend using a big screen (eg `iPhone 14 Pro Max`) as the "base device" to develop on. If your base device is too small for one of the screens you want to emulate, you'll get a warning in the console.
 
 ### Eslint config
 
@@ -189,6 +183,8 @@ A function to activate or deactivate the screen-sizer mode. No parameters.
 
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
+
+---
 
 ## 👉 About Bam
 
