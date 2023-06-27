@@ -1,15 +1,7 @@
 import { registerExpoDevMenuItem } from './integrations/expo-dev-menu';
 import { registerReactNativeDevMenuItem } from './integrations/react-native-dev-menu';
-import { store } from './state';
 
-type SetupConfig = {
-  activatedByDefault?: boolean;
-};
-
-export const setup = ({ activatedByDefault = false }: SetupConfig) => {
+export const setup = () => {
   registerExpoDevMenuItem();
   registerReactNativeDevMenuItem();
-  if (activatedByDefault) {
-    store.toggleIsEnabled();
-  }
 };
