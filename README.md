@@ -156,8 +156,8 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT
+## 👉 About Bam
 
----
+We are a 100 people company developing and designing multiplatform applications with [React Native](https://www.bam.tech/agence-react-native-paris) using the Lean & Agile methodology. To get more information on the solutions that would suit your needs, feel free to get in touch by [email](mailto://contact@bam.tech) or through or [contact form](https://www.bam.tech/en/contact)!
 
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+We will always answer you with pleasure 😁
