@@ -134,19 +134,16 @@ You can setup these eslint rules to enforce some of the guidelines above:
 
 ### `ScreenSizer.setup`
 
-A function that should be called on initialization. Accept an optional `config` parameter with the following options:
-
-| Option             | Type              | Description                                                                                      |
-| ------------------ | ----------------- | ------------------------------------------------------------------------------------------------ |
-| activatedByDefault | boolean, optional | Specify if the ScreenSizer should be activated by default when the app starts. Default to false. |
+A function that should be called on initialization.
 
 ### `ScreenSizer.Wrapper`
 
 A wrapper component to simulate the different screens.
 
-| Props   | Type                                      | Description                                                                                                                                                          |
-| ------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| devices | `Array<Device \| 'hostDevice'>`, optional | A list of device specifications. If a device is bigger than the host device, a warning will be prompted in the console. Default to `ScreenSizer.defaultDevices.all`. |
+| Props              | Type                                      | Description                                                                                                                                                          |
+| ------------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| devices            | `Array<Device \| 'hostDevice'>`, optional | A list of device specifications. If a device is bigger than the host device, a warning will be prompted in the console. Default to `ScreenSizer.defaultDevices.all`. |
+| activatedByDefault | boolean, optional                         | Specify if the ScreenSizer should be activated by default when the app starts. Default to false.                                                                     |
 
 > **NOTE**: `Device` has the following type:
 >
