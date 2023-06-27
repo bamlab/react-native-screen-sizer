@@ -144,7 +144,7 @@ A function that should be called on initialization. Accept an optional `config` 
 
 A wrapper component to simulate the different screens.
 
-| Prop    | Type                                      | Description                                                                                                                                                          |
+| Props   | Type                                      | Description                                                                                                                                                          |
 | ------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | devices | `Array<Device \| 'hostDevice'>`, optional | A list of device specifications. If a device is bigger than the host device, a warning will be prompted in the console. Default to `ScreenSizer.defaultDevices.all`. |
 
@@ -184,10 +184,8 @@ A function to activate or deactivate the screen-sizer mode. No parameters.
 - **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
 
----
-
 ## 👉 About Bam
 
-We are a 100 people company developing and designing multiplatform applications with [React Native](https://www.bam.tech/agence-react-native-paris) using the Lean & Agile methodology. To get more information on the solutions that would suit your needs, feel free to get in touch by [email](mailto://contact@bam.tech) or through or [contact form](https://www.bam.tech/en/contact)!
+We are a 100 people company developing and designing multi-platform applications with [React Native](https://www.bam.tech/expertise/react-native) using the Lean & Agile methodology. To get more information on the solutions that would suit your needs, feel free to get in touch by [email](mailto:contact@bam.tech) or through our [contact form](https://www.bam.tech/en/contact)!
 
 We will always answer you with pleasure 😁
