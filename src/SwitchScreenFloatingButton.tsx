@@ -3,6 +3,7 @@ import {
   Animated,
   Image,
   PanResponder,
+  PanResponderGestureState,
   StyleSheet,
   TouchableOpacity,
   View,
@@ -28,7 +29,8 @@ export const SwitchScreenFloatingButton = ({
 
   const panResponder = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (_, { dx, dy }: PanResponderGestureState) =>
+        dx > 0 || dy > 0,
       onPanResponderMove: Animated.event([null, { dx: pan.x, dy: pan.y }], {
         useNativeDriver: false,
       }),
