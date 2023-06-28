@@ -20,6 +20,7 @@ const createStore = () => {
   const listeners = new Set<() => void>();
 
   return {
+    setIsEnabled: (isEnabled: boolean) => setState({ isEnabled }),
     toggleIsEnabled: () => {
       setState({ isEnabled: !state.isEnabled });
     },

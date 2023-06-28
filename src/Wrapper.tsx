@@ -10,15 +10,25 @@ import {
 
 import { SwitchScreenFloatingButton } from './SwitchScreenFloatingButton';
 import { defaultDevices } from './defaultDevices';
-import { useStore } from './state';
+import { store, useStore } from './state';
 import type { Device } from './types';
 
 type WrapperMemoProps = PropsWithChildren<{
   devices?: Array<Device | 'hostDevice'>;
+  activatedByDefault?: boolean;
 }>;
 
-const WrapperMemo = ({ children, devices }: WrapperMemoProps) => {
+const WrapperMemo = ({
+  children,
+  devices,
+  activatedByDefault,
+}: WrapperMemoProps) => {
+  useEffect(() => {
+    store.setIsEnabled(!!activatedByDefault);
+  }, [activatedByDefault]);
+
   const { isEnabled } = useStore();
+
   const realFrame = useSafeAreaFrame();
   const realInsets = useSafeAreaInsets();
 
