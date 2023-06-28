@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-screen-sizer": ["./src/index"]
+      "@bam.tech/react-native-screen-sizer": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

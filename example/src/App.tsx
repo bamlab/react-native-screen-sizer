@@ -1,8 +1,8 @@
 import * as React from 'react';
 
+import * as ScreenSizer from '@bam.tech/react-native-screen-sizer';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import * as ScreenSizer from 'react-native-screen-sizer';
 
 ScreenSizer.setup();
 
