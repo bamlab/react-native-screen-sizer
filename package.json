@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "assets",
+    "assets/images",
     "*.podspec",
     "!lib/typescript/example",
     "!ios/build",
