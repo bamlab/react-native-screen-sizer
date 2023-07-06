@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {
   SafeAreaFrameContext,
@@ -32,6 +32,10 @@ const WrapperMemo = ({
   const realFrame = useSafeAreaFrame();
   const realInsets = useSafeAreaInsets();
 
+  const isPortrait = useMemo(() => {
+    return realFrame.width < realFrame.height;
+  }, [realFrame]);
+
   const devicesList =
     devices?.map<Device>((device) => {
       if (device === 'hostDevice') {
@@ -42,9 +46,20 @@ const WrapperMemo = ({
           insets: realInsets,
         };
       } else {
-        return device;
+        return isPortrait
+          ? device
+          : { ...device, width: device.height, height: device.width };
       }
-    }) || defaultDevices.all;
+    }) ||
+    (isPortrait
+      ? defaultDevices.all
+      : defaultDevices.all.map((device) => {
+          return {
+            ...device,
+            width: device.height,
+            height: device.width,
+          };
+        }));
 
   useEffect(() => {
     devicesList.forEach((device) => {
