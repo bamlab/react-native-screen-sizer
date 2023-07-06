@@ -36,30 +36,33 @@ const WrapperMemo = ({
     return realFrame.width < realFrame.height;
   }, [realFrame]);
 
-  const devicesList =
-    devices?.map<Device>((device) => {
-      if (device === 'hostDevice') {
-        return {
-          name: 'Host Device',
-          width: realFrame.width,
-          height: realFrame.height,
-          insets: realInsets,
-        };
-      } else {
-        return isPortrait
-          ? device
-          : { ...device, width: device.height, height: device.width };
-      }
-    }) ||
-    (isPortrait
-      ? defaultDevices.all
-      : defaultDevices.all.map((device) => {
+  const devicesList = useMemo(
+    () =>
+      devices?.map<Device>((device) => {
+        if (device === 'hostDevice') {
           return {
-            ...device,
-            width: device.height,
-            height: device.width,
+            name: 'Host Device',
+            width: realFrame.width,
+            height: realFrame.height,
+            insets: realInsets,
           };
-        }));
+        } else {
+          return isPortrait
+            ? device
+            : { ...device, width: device.height, height: device.width };
+        }
+      }) ||
+      (isPortrait
+        ? defaultDevices.all
+        : defaultDevices.all.map((device) => {
+            return {
+              ...device,
+              width: device.height,
+              height: device.width,
+            };
+          })),
+    [devices, isPortrait, realFrame, realInsets]
+  );
 
   useEffect(() => {
     devicesList.forEach((device) => {
