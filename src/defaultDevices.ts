@@ -6,28 +6,29 @@ const iPhoneSE2016: Device = {
   name: 'iPhone SE 2016',
   width: 320,
   height: 568,
-  insets: { top: 20, bottom: 0 },
+  insets: { top: 20 },
 };
 
 const iPhoneSE2022: Device = {
   name: 'iPhone SE 2022',
   width: 375,
   height: 667,
-  insets: { top: 20, bottom: 0 },
+  insets: { top: 20 },
 };
 
 const galaxyS8: Device = {
   name: 'Galaxy S8',
   width: 360,
   height: 740,
-  insets: { top: 24, bottom: 0 },
+  insets: { top: 24 },
 };
 
 const iPhone12Mini: Device = {
   name: 'iPhone 12 Mini',
   width: 375,
   height: 812,
-  insets: { top: 44, bottom: 34 },
+  insets: { top: 50, bottom: 34 },
+  landscapeInsets: { bottom: 21, left: 50, right: 50 },
 };
 
 const iPhone12Pro: Device = {
@@ -35,6 +36,7 @@ const iPhone12Pro: Device = {
   width: 390,
   height: 844,
   insets: { top: 47, bottom: 34 },
+  landscapeInsets: { bottom: 21, left: 47, right: 47 },
 };
 
 export const defaultDevices = {
