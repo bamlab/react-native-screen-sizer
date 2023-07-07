@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {
   SafeAreaFrameContext,
@@ -32,19 +32,36 @@ const WrapperMemo = ({
   const realFrame = useSafeAreaFrame();
   const realInsets = useSafeAreaInsets();
 
-  const devicesList =
-    devices?.map<Device>((device) => {
-      if (device === 'hostDevice') {
-        return {
-          name: 'Host Device',
-          width: realFrame.width,
-          height: realFrame.height,
-          insets: realInsets,
-        };
-      } else {
-        return device;
-      }
-    }) || defaultDevices.all;
+  const isPortrait = realFrame.width < realFrame.height;
+
+  const devicesList = useMemo(
+    () =>
+      devices?.map<Device>((device) => {
+        if (device === 'hostDevice') {
+          return {
+            name: 'Host Device',
+            width: realFrame.width,
+            height: realFrame.height,
+            insets: realInsets,
+            landscapeInsets: realInsets,
+          };
+        } else {
+          return isPortrait
+            ? device
+            : { ...device, width: device.height, height: device.width };
+        }
+      }) ||
+      (isPortrait
+        ? defaultDevices.all
+        : defaultDevices.all.map((device) => {
+            return {
+              ...device,
+              width: device.height,
+              height: device.width,
+            };
+          })),
+    [devices, isPortrait, realFrame, realInsets]
+  );
 
   useEffect(() => {
     devicesList.forEach((device) => {
@@ -83,7 +100,9 @@ const WrapperMemo = ({
         right: 0,
         top: 0,
         bottom: 0,
-        ...selectedDevice.insets,
+        ...(isPortrait
+          ? selectedDevice.insets
+          : selectedDevice.landscapeInsets),
       }
     : realInsets;
 
@@ -115,12 +134,37 @@ const WrapperMemo = ({
             {isEnabled && (
               <>
                 <View
-                  style={[styles.insetOverlay, { top: 0, height: insets.top }]}
+                  style={[
+                    styles.insetOverlay,
+                    { top: 0, height: insets.top, width: '100%' },
+                  ]}
                 />
                 <View
                   style={[
                     styles.insetOverlay,
-                    { bottom: 0, height: insets.bottom },
+                    { bottom: 0, height: insets.bottom, width: '100%' },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.insetOverlay,
+                    {
+                      left: 0,
+                      top: insets.top,
+                      width: insets.left,
+                      height: frame.height - insets.top - insets.bottom,
+                    },
+                  ]}
+                />
+                <View
+                  style={[
+                    styles.insetOverlay,
+                    {
+                      right: 0,
+                      top: insets.top,
+                      width: insets.right,
+                      height: frame.height - insets.top - insets.bottom,
+                    },
                   ]}
                 />
               </>
@@ -162,7 +206,6 @@ const styles = StyleSheet.create({
   },
   insetOverlay: {
     position: 'absolute',
-    width: '100%',
     backgroundColor: 'rgba(130, 130, 130, 0.3)',
   },
   fakeScreen: {

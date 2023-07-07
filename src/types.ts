@@ -2,8 +2,13 @@ export type Device = {
   name: string;
   width: number;
   height: number;
-  insets?: {
-    top: number;
-    bottom: number;
-  };
+  insets?: Partial<Insets>;
+  landscapeInsets?: Partial<Insets>;
+};
+
+type Insets = {
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
 };

@@ -147,15 +147,20 @@ A wrapper component to simulate the different screens.
 
 > **NOTE**: `Device` has the following type:
 >
-> ```ts
-> type Device = {
+> ```typescript
+> export type Device = {
 >   name: string;
 >   width: number;
 >   height: number;
->   insets?: {
->     top: number;
->     bottom: number;
->   };
+>   insets?: Partial<Insets>;
+>   landscapeInsets?: Partial<Insets>;
+> };
+>
+> type Insets = {
+>   top: number;
+>   bottom: number;
+>   left: number;
+>   right: number;
 > };
 > ```
 
@@ -178,7 +183,6 @@ A function to activate or deactivate the screen-sizer mode. No parameters.
 
 ## Current limitations
 
-- **Landscape mode** is not supported
 - On android, the **status bar** inset is applied as if the status bar is visible and translucent
 
 ## 👉 About Bam
