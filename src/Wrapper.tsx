@@ -123,10 +123,14 @@ const WrapperMemo = ({
       <SafeAreaFrameContext.Provider value={frame}>
         <SafeAreaInsetsContext.Provider value={insets}>
           <View
-            style={[
-              styles.fakeScreen,
-              { width: frame.width, height: frame.height },
-            ]}
+            style={
+              isEnabled
+                ? [
+                    styles.fakeScreen,
+                    { width: frame.width, height: frame.height },
+                  ]
+                : styles.identity
+            }
           >
             {children}
             {isEnabled && (
