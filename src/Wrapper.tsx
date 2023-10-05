@@ -119,9 +119,7 @@ const WrapperMemo = ({
    * ☢️ This tree must be the same whether isEnabled or not, otherwise children state is lost when toggling
    */
   return (
-    <View
-      style={isEnabled ? styles.wholeScreenEnabled : styles.wholeScreenDisabled}
-    >
+    <View style={isEnabled ? styles.wholeScreenEnabled : styles.identity}>
       <SafeAreaFrameContext.Provider value={frame}>
         <SafeAreaInsetsContext.Provider value={insets}>
           <View
@@ -193,7 +191,11 @@ const WrapperMemo = ({
 export const Wrapper = React.memo(WrapperMemo);
 
 const styles = StyleSheet.create({
-  wholeScreenDisabled: {
+  identity: {
+    /*
+     * View styles that are supposed to be "transparent": having this view should be like it being not present in terms of layout / visual impact
+     * This is useful because of the "having the same react tree whether enabled or not" requirement
+     */
     width: '100%',
     height: '100%',
   },
@@ -211,7 +213,6 @@ const styles = StyleSheet.create({
   fakeScreen: {
     backgroundColor: 'white',
   },
-
   deviceInfo: {
     backgroundColor: '#FFFFFF99',
     position: 'absolute',
