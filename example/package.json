@@ -2,11 +2,11 @@
   "name": "example",
   "version": "1.0.0",
   "scripts": {
-    "start:go": "expo start",
     "prebuild": "expo prebuild",
-    "install:ios": "expo run:ios",
-    "install:android": "expo run:android",
-    "start": "expo start --dev-client"
+    "start:go": "expo start --go",
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "dependencies": {
     "expo": "^50.0.7",
