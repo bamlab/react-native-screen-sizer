@@ -12,6 +12,7 @@ import {
   useSafeAreaFrame,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { LeftArrow, RightArrow, ScreenInfo } from './assets';
 
 type SwitchScreenFloatingButtonProps = {
   handlePrevScreen: () => void;
@@ -51,24 +52,15 @@ export const SwitchScreenFloatingButton = ({
       {...panResponder.panHandlers}
     >
       <TouchableOpacity onPress={handlePrevScreen} style={styles.iconContainer}>
-        <Image
-          source={require('../assets/images/LeftArrow.png')}
-          style={styles.icon}
-        />
+        <Image source={LeftArrow} style={styles.icon} />
       </TouchableOpacity>
       <View style={styles.divider} />
       <View style={styles.iconContainer}>
-        <Image
-          source={require('../assets/images/ScreenInfo.png')}
-          style={styles.icon}
-        />
+        <Image source={ScreenInfo} style={styles.icon} />
       </View>
       <View style={styles.divider} />
       <TouchableOpacity onPress={handleNextScreen} style={styles.iconContainer}>
-        <Image
-          source={require('../assets/images/RightArrow.png')}
-          style={styles.icon}
-        />
+        <Image source={RightArrow} style={styles.icon} />
       </TouchableOpacity>
     </Animated.View>
   );
