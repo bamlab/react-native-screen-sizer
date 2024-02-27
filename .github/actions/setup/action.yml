@@ -4,24 +4,30 @@ description: Setup Node.js and install dependencies
 runs:
   using: composite
   steps:
+    - name: Enable Corepack
+      run: corepack enable
+      shell: bash
+
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version-file: .nvmrc
 
-    - name: Cache dependencies
-      id: yarn-cache
+    - name: Load dependency cache
       uses: actions/cache@v3
       with:
+        # .yarn/cache: speed up fetch step
+        # .yarn/install-state.gz + node_modules: speed up link step and resolution step
         path: |
           **/node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          .yarn/cache
+          .yarn/install-state.gz
+        key: ${{ runner.os }}-node-${{ steps.setup-node.outputs.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-node-${{ steps.setup-node.outputs.node-version }}-modules-
 
     - name: Install dependencies
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
       run: |
-        yarn install --cwd example --frozen-lockfile
-        yarn install --frozen-lockfile
+        yarn --cwd example install --immutable
+        yarn install --immutable
       shell: bash
